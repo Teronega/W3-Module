@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+
+<title>Jon's Password Generator</title>
+
+<body>
+  <h1>Generic Password Generator</h1>
+  
+  <div>
+    <label for="passwordLength">Password Length:</label>
+    <input type="number" id="passwordLength" min="6" max="20" value="10">
+  </div>
+  
+  <div>
+    <label for="generatedPassword">Generated Password:</label>
+    <input type="text" id="generatedPassword" readonly>
+  </div>
+  
+  <button onclick="generatePassword()">Generate Password</button>
+
+  <script>
+    // Function to generate a random password
+    function generatePassword() {
+      var lengthInput = document.getElementById("passwordLength");
+      var passwordInput = document.getElementById("generatedPassword");
+      
+      var length = parseInt(lengthInput.value);
+      if (isNaN(length)) {
+        alert("Please enter a valid password length.");
+        return;
+      }
+      
+      // Define available characters
+      var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+~`|}{[]\:;?><,./-=";
+      
+      // Initialize password variable
+      var password = "";
+      
+      // Generate random characters to build the password
+      for (var i = 0; i < length; i++) {
+        // Get a random character from the available characters
+        var randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
+        
+        // Add the random character to the password
+        password += randomChar;
+      }
+      
+      // Set the generated password in the input field
+      passwordInput.value = password;
+    }
+  </script>
+</body>
+</html>
